@@ -5,12 +5,12 @@ import '@tabler/core/dist/js/tabler.min';
 import '@tabler/core/dist/css/tabler.min.css';
 import 'material-icons/iconfont/material-icons.css';
 
-import '@/channels';
-import '@/controllers/shared';
-import '@/controllers/admin';
-import '@/styles/admin/index.scss';
+import '../channels';
+import '../controllers/shared';
+import '../controllers/admin';
+import '../styles/admin/index.scss';
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
-require.context('@/images', true);
+require.context('../images', true);
