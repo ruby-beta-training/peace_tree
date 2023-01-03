@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta content=('text/html; charset=UTF-8') http-equiv='Content-Type'
+    meta content='width=device-width,initial-scale=1' name='viewport'
+    title Peace Tree
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload'
+  body.theme-light data-controller='flash linkto choices filepond'
+    .wrapper
+      = render 'layouts/admin/aside'
+      .page-wrapper
+        = render 'layouts/admin/header'
+        = render 'shared/flash'
+        = yield
