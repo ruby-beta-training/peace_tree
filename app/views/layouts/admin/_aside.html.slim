@@ -1,0 +1,52 @@
+aside.navbar.navbar-vertical.navbar-expand-lg.navbar-light
+  .container-fluid
+    button.navbar-toggler data-bs-target='#navbar-menu' data-bs-toggle='collapse' type='button'
+      span.navbar-toggler-icon
+    h1.navbar-brand.navbar-brand-autodark
+
+      = image_pack_tag 'logopeacetree.png', style: 'height:60px;width:60px;', alt: 'Tree', class: 'navbar-brand-image'
+      small
+        |Peace tree
+    .navbar-nav.flex-row.d-lg-none
+    #navbar-menu.collapse.navbar-collapse
+      .scrollbar-container.ps.ps--active-y
+        ul.navbar-nav.pt-lg-2
+          li.nav-item class=active_link_class(['admin/dashboard#index'])
+            = link_to admin_root_path, class: 'nav-link'
+              svg.iconify.iconify--mdi[xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" font-size="1.5rem" width="1em" height="1em" viewbox="0 0 24 24"]
+                path[fill="currentColor" d="m12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3"]
+              span.nav-link-title
+                | Dashboard
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle aria-expanded='false' data-bs-toggle='dropdown' href='#navbar-base' role='button'
+              svg.iconify.iconify--mdi[xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" font-size="1.5rem" width="1em" height="1em" viewbox="0 0 24 24"]
+                  path[fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2m0 7c2.67 0 8 1.33 8 4v3H4v-3c0-2.67 5.33-4 8-4m0 1.9c-2.97 0-6.1 1.46-6.1 2.1v1.1h12.2V17c0-.64-3.13-2.1-6.1-2.1Z"]
+              span.nav-link-title
+                | User
+            .dropdown-menu
+                .dropdown-menu-column
+                  = link_to edit_user_registration_path, class: 'dropdown-item'
+                    svg.iconify.iconify--mdi[xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" font-size="0.5rem" width="1em" height="1em" viewbox="0 0 24 24"]
+                      path[fill="currentColor" d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"]
+                    span.nav-link-title&nbsp;
+                      | Profile
+                  = link_to destroy_user_session_path, method: :delete, class: 'dropdown-item'
+                    svg.iconify.iconify--mdi[xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" font-size="0.5rem" width="1em" height="1em" viewbox="0 0 24 24"]
+                      path[fill="currentColor" d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"]
+                    span.nav-link-title&nbsp;
+                      | Logout
+          li.nav-item class=active_link_class(['admin/dashboard#index1'])
+            = link_to admin_root_path, class: 'nav-link'
+              span.nav-link-icon.d-md-none.d-lg-inline-block.material-icons.material-icons-outlined business
+              span.nav-link-title
+                | Project
+          li.nav-item class=active_link_class(['admin/dashboard#index2'])
+            = link_to admin_root_path, class: 'nav-link'
+              span.nav-link-icon.d-md-none.d-lg-inline-block.material-icons.material-icons-outlined school
+              span.nav-link-title
+                | School
+          li.nav-item class=active_link_class(['admin/dashboard#index3'])
+            = link_to admin_root_path, class: 'nav-link'
+              span.nav-link-icon.d-md-none.d-lg-inline-block.material-icons.material-icons-outlined business
+              span.nav-link-title
+                | Sponsor

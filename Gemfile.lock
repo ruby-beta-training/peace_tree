@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ricardoemerson/font-ionicons-rails.git
+  revision: af956fc2a01bf2878b7f475913a7c0bb7cf9f0e0
+  specs:
+    font-ionicons-rails (2.0.1.6)
+      railties (>= 3.2, < 8.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -111,6 +118,8 @@ GEM
     faker (2.21.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -349,6 +358,8 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  font-awesome-rails
+  font-ionicons-rails!
   jbuilder (~> 2.11)
   jsonapi-serializer
   jwt
