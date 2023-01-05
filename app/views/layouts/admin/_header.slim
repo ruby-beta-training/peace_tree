@@ -1,4 +1,4 @@
-header.navbar.navbar-expand-md.navbar-light.d-none.d-lg-flex.d-print-none
+#header.navbar.navbar-expand-md.navbar-light.d-none.d-lg-flex.d-print-none
   .container-xl
     .navbar-nav.flex-row.order-md-last
       .d-none.d-md-flex
@@ -32,8 +32,9 @@ header.navbar.navbar-expand-md.navbar-light.d-none.d-lg-flex.d-print-none
                         | Make more awesome features!
       .nav-item.dropdown
         a.nav-link.d-flex.lh-1.text-reset.p-0 data-bs-toggle='dropdown' href='#'
-          span.avatar
-              img[alt="John Doe" src="https://pixinvent.com/demo/materialize-mui-react-nextjs-admin-template/demo-1/images/avatars/1.png"]
+          span.avatar.avatar-online
+              img.w-px-4.rounded-circle[alt="John Doe" src="https://pixinvent.com/demo/materialize-mui-react-nextjs-admin-template/demo-1/images/avatars/1.png"]
+
           .dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
             = link_to 'Profile Settings', edit_user_registration_path, class: 'dropdown-item'
             .MuiBox-root.css-u9drjp

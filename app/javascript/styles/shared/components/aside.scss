@@ -5,6 +5,10 @@
     width: 90%;
     margin: auto;
   }
+  .active.iconify {
+    color: $white;
+  }
+
   .nav-item:not(.active):hover {
     border-radius: 10px;
     width: 90%;
@@ -12,15 +16,19 @@
     text-decoration: none;
     background-color: $nav-item-hover;
   }
+
   .nav-link {
     padding: 0.7rem 2.75rem;
   }
+
   .active > .nav-link {
     color: $white;
   }
+
   .active:after {
     border: none;
   }
+
   .dropdown-item {
     min-width: 0;
     display: flex;

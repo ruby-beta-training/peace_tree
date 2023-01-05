@@ -33,3 +33,16 @@
 .font-weight-900 {
   font-weight: 900 !important;
 }
+.btn-primary {
+  background-color: #696cff;
+  border-color: #696cff;
+  box-shadow: 0 0.125rem 0.25rem 0 rgb(105 108 255 / 40%);
+  color: #fff;
+  border-radius: 10px;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #5f61e6;
+  border-color: #5f61e6;
+  transform: translateY(-1px);
+}
