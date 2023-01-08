@@ -26,4 +26,5 @@
           wrapper_html: { class: 'mb-3' },
           placeholder: 'phone_number'
       .form-actions.mb-3
-        = f.button :submit, 'Create', class: 'btn btn-primary w-100'
+        = f.button :submit, 'Create', class: 'btn btn-primary w-100 mb-3'
+        = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-warning w-100'

@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ['alert'];
 
   alertTargetConnected(currentAlert) {
-    const alert = bootstrap.Alert.getOrCreateInstance(currentAlert);
+    var alert = bootstrap.Alert.getOrCreateInstance(currentAlert);
 
     setTimeout(() => {
       alert.close();

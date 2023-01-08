@@ -17,10 +17,20 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  after_initialize :set_default_role
+
+  private
+
+  def set_default_role
+    self.roles ||= :employee
+  end
+
   rolify
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   def auth_token
     JsonWebToken.encode(user_id: id, user_email: email)
   end
+
+
 end

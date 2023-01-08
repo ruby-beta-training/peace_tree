@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/422', to: 'errors#unprocessable_entity'
   get '/500', to: 'errors#internal_server_error'
 
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
+  devise_for :users
   namespace :admin do
     root 'dashboard#index'
   end
