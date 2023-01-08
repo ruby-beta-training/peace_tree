@@ -1,8 +1,8 @@
 #devise-registrations-new-container.authentication-wrapper.authentication-cover.authentication-inner.row.m-0.vh-100
-    .d-none.d-lg-flex.col-lg-7.col-xl-8.align-items-center.p-5
-      .w-100.d-flex.justify-content-center
-        img.img-fluid[src="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo/assets/img/illustrations/girl-with-laptop-light.png" alt="Login image" width="700" data-app-dark-img="illustrations/girl-with-laptop-dark.png" data-app-light-img="illustrations/girl-with-laptop-light.png"]
-    .d-flex.col-12.col-lg-5.col-xl-4.align-items-center.authentication-bg
+    .d-none.d-lg-flex.col-lg-7.col-xl-8.align-items-center.p-5.vh-100
+      .w-100.d-flex.justify-content-center.vh-100
+        = image_pack_tag 'girl-with-laptop-light.png'
+    .d-flex.col-12.col-lg-5.col-xl-4.authentication-bg
       .w-px-400.mx-auto
         .app-brand.mb-3
           .d-flex.justify-content-center
@@ -11,7 +11,6 @@
           | PeaceTrees Vietnam
         p.mb-4
           | Headquartered in Seattle, Washington, and Quảng Trị Province
-        form#formAuthentication.mb-3.fv-plugins-bootstrap5.fv-plugins-framework[action="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo-1" method="GET" novalidate="novalidate"]
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = f.error_notification
           .form-inputs
@@ -32,12 +31,6 @@
               wrapper_html: { class: 'mb-3' },
               placeholder: 'password confirm'
           .mb-3.fv-plugins-icon-container
-            .form-check
-              input#terms-conditions.form-check-input[type="checkbox" name="terms"]
-              label.form-check-label[for="terms-conditions"]
-                |  I agree to
-                a[href="javascript:void(0);"]
-                  | privacy policy
             .form-actions.mb-3
               = f.button :submit, 'Sign up', class: 'btn btn-primary w-100'
             .form-links.mb-3.text-center

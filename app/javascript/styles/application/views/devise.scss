@@ -1,3 +1,7 @@
+* {
+  font-size: 15px;
+}
+
 .format-form {
   margin-top: 14vh;
 
@@ -7,9 +11,9 @@
 
   .card {
     padding: 12px 36px;
-    width: 500px;
+    width: 30%;
     border-radius: 15px;
-    height: 550px;
+    height: 100vh;
   }
 }
 .authentication-bg {
@@ -17,11 +21,4 @@
 }
 .logo {
   width: 150px;
-}
-#devise-registrations-new-container {
-  // .authentication-wrapper {
-  //   flex-basis: 100%;
-  //   min-height: 100vh;
-  //   width: 100%;
-  // }
 }

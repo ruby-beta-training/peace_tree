@@ -1,41 +1,8 @@
-/ #devise-sessions-new-container.devise-form-container.d-flex.align-items-center.justify-content-center.flex-column.format-form
-/   .card.mx-auto
-/     .card-body
-/       .d-flex.justify-content-center
-/         = image_pack_tag 'logopeacetree.png', class: 'logo'
-/       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-/         .form-inputs
-/           = f.input :email,
-/             required: false,
-/             autofocus: true,
-/             input_html: { autocomplete: 'email', placeholder: 'Email' },
-/             label_html: {class: 'mb-3'},
-/             wrapper_html: { class: 'mb-3' }
-/           = f.input :password,
-/             required: false,
-/             input_html: { autocomplete: 'current-password', placeholder: 'Password' },
-/             label_html: { class: 'mb-3' },
-/             wrapper_html: { class: 'mb-3' }
-
-/           = f.input :remember_me, as: :boolean, inline_label: "Remember me", class: "checkbox inline", input_html: { checked: false } if devise_mapping.rememberable?
-/         .form-actions.mb-3
-/           = f.button :submit, 'Login', class: 'btn btn-primary w-100'
-/         .form.text-center
-/           p.text-center
-/           span
-/             | New on our platform?
-/           span
-/             = link_to 'Create an account', new_user_registration_path
-/         .form.text-center
-/           span
-/             = link_to 'Forgot your password?', new_user_password_path
-/         i.fab.fa-facebook-f.fa-2x[style="color: #3b5998;"]
-
 .authentication-wrapper.authentication-cover.authentication-inner.row.m-0.vh-100
-    .d-none.d-lg-flex.col-lg-7.col-xl-8.align-items-center.p-5
-      .w-100.d-flex.justify-content-center
-        img.img-fluid[src="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo/assets/img/illustrations/boy-with-rocket-light.png" alt="Login image" width="700" data-app-dark-img="illustrations/boy-with-rocket-dark.png" data-app-light-img="illustrations/boy-with-rocket-light.png"]
-    .d-flex.col-12.col-lg-5.col-xl-4.align-items-center.authentication-bg.p-sm-5.p-4
+    .d-none.d-lg-flex.col-lg-7.col-xl-8.align-items-center.p-5.vh-100
+      .w-100.d-flex.justify-content-center.vh-100
+        =image_pack_tag 'boy-with-rocket-light.png'
+    .d-flex.col-12.col-lg-5.col-xl-4.authentication-bg
       .w-px-400.mx-auto
         .app-brand.mb-3
           .d-flex.justify-content-center
@@ -49,15 +16,18 @@
             .form-inputs
               = f.input :email,
                 autofocus: true,
-                input_html: { autocomplete: 'email' },
-                label_html: {class: 'form-label mb-3'},
+                required: true,
+                input_html: { autocomplete: 'email'},
+                label_html: { class: 'form-label mb-3' },
                 wrapper_html: { class: 'mb-3' },
                 placeholder: 'user@domain.com'
               = f.input :password,
+                required: true,
                 input_html: { autocomplete: 'new-password' },
-                label_html: {class: 'form-label mb-3'},
+                label_html: { class: 'form-label mb-3' },
                 wrapper_html: { class: 'mb-3' },
                 placeholder: 'password'
+
             .form-actions.mb-3
               = f.button :submit, 'Sign in', class: 'btn btn-primary w-100'
             .form-links.mb-3.text-center

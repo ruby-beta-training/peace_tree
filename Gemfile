@@ -11,8 +11,6 @@ gem 'webpacker', '~> 5.4'
 gem 'turbolinks', '~> 5.2'
 gem 'jbuilder', '~> 2.11'
 gem 'turbo-rails', '~> 1.1', '>= 1.1.1'
-gem "font-ionicons-rails", git: 'https://github.com/ricardoemerson/font-ionicons-rails.git'
-gem 'font-awesome-rails'
 
 
 gem 'jwt'

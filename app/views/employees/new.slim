@@ -1,0 +1,29 @@
+.card.w-50.p-3.mx-auto
+  .card-header.justify-content-between.align-items-center
+    h1.mb-0
+      | Employee Infor
+  .card-body
+     = simple_form_for @employee do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :full_name,
+          autofocus: true,
+          required: true,
+          input_html: { autocomplete: 'full_name'},
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'Johnny Dang'
+        = f.input :address,
+          required: true,
+          input_html: { autocomplete: 'address' },
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'address'
+        = f.input :phone_number,
+          required: true,
+          input_html: { autocomplete: 'phone_number' },
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'phone_number'
+      .form-actions.mb-3
+        = f.button :submit, 'Create', class: 'btn btn-primary w-100'
