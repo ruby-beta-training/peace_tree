@@ -11,26 +11,26 @@
           | PeaceTrees Vietnam
         p.mb-4
           | Headquartered in Seattle, Washington, and Quảng Trị Province
-          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-            = f.error_notification
-            .form-inputs
-              = f.input :email,
-                autofocus: true,
-                required: true,
-                input_html: { autocomplete: 'email'},
-                label_html: { class: 'form-label mb-3' },
-                wrapper_html: { class: 'mb-3' },
-                placeholder: 'user@domain.com'
-              = f.input :password,
-                required: true,
-                input_html: { autocomplete: 'new-password' },
-                label_html: { class: 'form-label mb-3' },
-                wrapper_html: { class: 'mb-3' },
-                placeholder: 'password'
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = f.error_notification
+          .form-inputs
+            = f.input :email,
+              autofocus: true,
+              required: true,
+              input_html: { autocomplete: 'email'},
+              label_html: { class: 'form-label mb-3' },
+              wrapper_html: { class: 'mb-3' },
+              placeholder: 'user@domain.com'
+            = f.input :password,
+              required: true,
+              input_html: { autocomplete: 'new-password' },
+              label_html: { class: 'form-label mb-3' },
+              wrapper_html: { class: 'mb-3' },
+              placeholder: 'password'
 
-            .form-actions.mb-3
-              = f.button :submit, 'Sign in', class: 'btn btn-primary w-100'
-            .form-links.mb-3.text-center
-              span
-                | New on our platform?&nbsp;
-                = link_to 'Create an account', new_user_registration_path
+          .form-actions.mb-3
+            = f.button :submit, 'Sign in', class: 'btn btn-primary w-100'
+          .form-links.mb-3.text-center
+            span
+              | New on our platform?&nbsp;
+              = link_to 'Create an account', new_user_registration_path

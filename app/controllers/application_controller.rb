@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
   def not_authorized
     redirect_to root_path, alert: 'You are not authorized to perform this action.'
   end
+
+  def has_employee_info?(resource)
+    Employee.where(user_id: resource.id).present?
+  end
+
 end
