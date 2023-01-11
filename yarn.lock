@@ -1133,6 +1133,11 @@
     webpack-cli "^3.3.12"
     webpack-sources "^1.4.3"
 
+"@stencil/core@^2.18.0":
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.20.0.tgz#0e68b5b42e727233803291eb0367ab2b53f7f1f3"
+  integrity sha512-ka+eOW+dNteXIfLCRipNbbAlBEQjqJ2fkx3fxzlKgnNHEQMdZiuIjlWt63KzvOJStNeuADdQXo89BB1dC2VRUw==
+
 "@tabler/core@^1.0.0-beta11":
   version "1.0.0-beta11"
   resolved "https://registry.yarnpkg.com/@tabler/core/-/core-1.0.0-beta11.tgz#d8de270ea05f7612c79cc51a3fee121406e21b50"
@@ -4110,6 +4115,13 @@ interpret@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.4.0.tgz#665ab8bc4da27a774a40584e812e3e0fa45b1a1e"
   integrity sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
+
+ionicons@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-6.0.4.tgz#ab7aa439b7f17f29e0ef0a28568b4920c3167bfd"
+  integrity sha512-uDNOkBo0OVYV+kIhb51g9mb7r3Z0b+78GPZQBsjXuaetNmrB/mNTqN/uFtO+vxL/rQySKjzk8qeKJI5NWL9Ueg==
+  dependencies:
+    "@stencil/core" "^2.18.0"
 
 ip-regex@^2.1.0:
   version "2.1.0"

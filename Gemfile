@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5.2'
 gem 'jbuilder', '~> 2.11'
 gem 'turbo-rails', '~> 1.1', '>= 1.1.1'
 
+
 gem 'jwt'
 gem 'devise'
 gem 'rolify'

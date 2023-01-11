@@ -1,0 +1,22 @@
+header {
+  .dropdown .dropdown-menu {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.26s ease;
+  }
+
+  .dropdown-menu.show {
+    margin-top: 0vh;
+    width: 40%;
+    margin-left: 38vw;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    flex-wrap: wrap;
+    transform: scaleY(1);
+  }
+
+  .dropdown-item {
+    width: 25% !important;
+  }
+}

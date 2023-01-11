@@ -1,12 +1,24 @@
-.devise-form-container {
-  margin-top: 10vh;
+* {
+  font-size: 15px;
+}
+
+.format-form {
+  margin-top: 14vh;
 
   .logo {
-    width: 210px;
+    width: 150px;
   }
 
   .card {
     padding: 12px 36px;
-    width: 400px;
+    width: 30%;
+    border-radius: 15px;
+    height: 100vh;
   }
+}
+.authentication-bg {
+  background-color: $white;
+}
+.logo {
+  width: 150px;
 }
