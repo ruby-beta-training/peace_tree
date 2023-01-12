@@ -1,18 +1,5 @@
-# Rails Simple Starter
-
-Ruby On Rails simple starter template :goat: :goat: :goat:.
-
-This template is built for fullstack Rails projects - Server side rendering web application (included admin namespace) & REST API.
-
-## General Information
-
-- Ruby version: `ruby 3.1.2`
-- Rails version: `rails 6.1.6`
-- Database: `postgresql`
 
 ## Installation
-
-- Install correct ruby version for our project: `rbenv local 3.1.2`
 - Install bundler: `gem install bundler`
 - Install gems: `bundle install`
 - Install nodejs packages: `yarn install`
