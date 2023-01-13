@@ -1,4 +1,4 @@
-.card.mx-3
+.card.mx-3.pb-3
   table.table.table-hover
     thead.thead-light
       tr
@@ -26,10 +26,10 @@
           td
             = user.employee&.address
           td
-            -if user.employee.present?
+            - if user.employee.present?
               span.badge.bg-label-success
                 | Active
-            -else
+            - else
               span.badge.bg-label-warning
                 | NoActive
           td

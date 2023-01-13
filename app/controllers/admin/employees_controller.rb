@@ -51,10 +51,7 @@ class Admin::EmployeesController < Admin::BaseController
   private
 
   def user_params
-    params.require(:user).permit(
-      :email, :password,
-      employee_attributes: %i[full_name address phone_number department_id]
-    )
+    params.require(:user).permit(:email, :password, employee_attributes: %i[full_name address phone_number department_id])
   end
 
   def set_user
