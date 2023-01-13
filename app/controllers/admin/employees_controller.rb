@@ -20,7 +20,7 @@ class Admin::EmployeesController < Admin::BaseController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = t('common.create.success', model: @user)
+      flash[:notice] = t('common.create.success', model: @user.email)
       redirect_to admin_employees_path
     else
       flash[:alert] = @user.errors.full_messages.to_sentence
@@ -29,15 +29,15 @@ class Admin::EmployeesController < Admin::BaseController
   end
 
   def edit
-    @user.build_employee if @user.employee.present?
+    @user.build_employee if @user.employee.blank?
   end
 
   def update
     if @user.update(user_params)
-      flash[:notice] = t('common.update.success', model: @user)
+      flash[:notice] = t('common.update.success', model: @user.email)
       redirect_to admin_employees_path
     else
-      flash[:notice] = t('common.update.failed', model: @user)
+      flash[:notice] = t('common.update.failed', model: @user.email)
       render :edit
     end
   end
