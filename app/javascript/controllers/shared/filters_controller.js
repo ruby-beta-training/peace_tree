@@ -6,7 +6,7 @@ export default class extends Controller {
 
   connect() {}
 
-  searchByEmail() {
+  searchByAttribute() {
     const baseUrl = this.inputTarget.dataset.url;
 
     Rails.ajax({

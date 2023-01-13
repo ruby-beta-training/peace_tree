@@ -18,8 +18,9 @@ div[data-controller="filters choices"]
       .col-md-11
         .dt-action-buttons.text-xl-end.text-lg-start.text-md-end.text-start.d-flex.align-items-center.justify-content-end.flex-md-row.flex-column.mb-3.mb-md-0
           label.mx-2
-            input.form-control[type="search" placeholder="Search.." data-filters-target="input" data-action="input->filters#searchByEmail" data-url=admin_employees_path]
+            input.form-control[type="search" placeholder="Search.." data-filters-target="input" data-action="input->filters#searchByAttribute" data-url=admin_employees_path]
           span
               =link_to "New employee", new_admin_employee_path, class:'btn btn-primary'
-  div[data-choices-target="listData"]
-      = render  'table', users: @users
+  div[data-filters-target="listData"]
+    div[data-choices-target="listData"]
+        = render  'table', users: @users

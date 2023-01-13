@@ -9,9 +9,11 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params.merge(user_id: current_user.id))
 
     if @employee.save
-      redirect_to root_path, notice: 'Add Employee successfully.'
+      flash[:notice] = t('common.create.success', model: @employee)
+      redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      flash[:alert] = @user.errors.full_messages.to_sentence
+      render :new
     end
   end
 

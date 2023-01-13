@@ -22,8 +22,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_initialize :set_default_role
+
   has_one :employee
   accepts_nested_attributes_for :employee, allow_destroy: true, update_only: true
+
   scope :employees, -> { without_role(:admin) }
   scope :employees_department, ->(department_id) { includes(:employee).where('department_id = ?', department_id) }
 
@@ -31,11 +33,9 @@ class User < ApplicationRecord
     JsonWebToken.encode(user_id: id, user_email: email)
   end
 
-
   private
 
   def set_default_role
     self.roles ||= :employee
   end
-
 end

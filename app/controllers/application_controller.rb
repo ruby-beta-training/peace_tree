@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource.has_role?(:admin)
       admin_root_path
-    elsif employee?(resource)
+    elsif resource.employee.blank?
       new_employee_path
     else
       root_path
@@ -23,7 +23,4 @@ class ApplicationController < ActionController::Base
     redirect_to new_employee_path, notice: 'You must input infor' if employee?(current_user)
   end
 
-  def employee?(resource1)
-    Employee.where(user_id: resource1.id).blank?
-  end
 end
