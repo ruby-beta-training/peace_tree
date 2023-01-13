@@ -1,0 +1,41 @@
+.card.mx-3
+  table.table.table-hover
+    thead.thead-light
+      tr
+        th
+          | Email
+        th
+          | Full name
+        th
+          | Address
+        th
+          | Phone number
+        th
+          | Status
+        th
+          | Actions
+    tbody
+      - users.each do |user|
+        tr
+          td
+            = user.email
+          td
+            = user.employee&.full_name
+          td
+            = user.employee&.phone_number
+          td
+            = user.employee&.address
+          td
+            -if user.employee.present?
+              span.badge.bg-label-success
+                | Active
+            -else
+              span.badge.bg-label-warning
+                | NoActive
+          td
+            .d-inline-block.text-nowrap
+              = link_to edit_admin_employee_path(user)
+                = image_pack_tag 'edit-icon.svg'
+              = link_to admin_employee_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+                = image_pack_tag 'delete-icon.svg'
+  == pagy_bootstrap_nav(@pagy) if @pagy.pages > 1
