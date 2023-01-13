@@ -22,5 +22,4 @@ class ApplicationController < ActionController::Base
   def redirect_to_employee
     redirect_to new_employee_path, notice: 'You must input infor' if employee?(current_user)
   end
-
 end
