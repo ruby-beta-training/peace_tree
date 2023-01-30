@@ -1,5 +1,5 @@
 class Admin::EmployeesController < Admin::BaseController
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[show reset_password edit update destroy]
   def index
     @users = User.employees.includes([employee: :department]).order('created_at DESC')
     @users = @users.employees_department(params[:depart]).employees_email(params[:search])
@@ -10,7 +10,10 @@ class Admin::EmployeesController < Admin::BaseController
     end
   end
 
-  def show; end
+  def show
+    @projects = @user.projects
+    @pagy, @projects = pagy(@projects, items: 3)
+  end
 
   def new
     @user = User.new
@@ -42,6 +45,15 @@ class Admin::EmployeesController < Admin::BaseController
     end
   end
 
+  def reset_password
+    if @user.update(password_params)
+      flash[:notice] = t('common.update.success', model: @user)
+    else
+      flash[:alert] = t('common.update.failed', model: @user)
+    end
+    redirect_to admin_employee_path
+  end
+
   def destroy
     @user.destroy
     flash[:notice] = t('common.destroy.success', model: @user.email)
@@ -52,6 +64,10 @@ class Admin::EmployeesController < Admin::BaseController
 
   def user_params
     params.require(:user).permit(:email, :password, employee_attributes: %i[full_name address phone_number department_id])
+  end
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
   def set_user

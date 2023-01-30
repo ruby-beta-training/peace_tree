@@ -1,0 +1,28 @@
+.card.mb-4
+  table.table.table-hover
+    thead.thead-light
+      tr
+        th
+          | Project Name
+        th
+          | Project Type
+        th
+          | Address
+        th
+          | Area
+        th
+          | Status
+    tbody
+      - @projects.each do |project|
+        tr
+          td
+            = project.project_name
+          td
+            = project.project_type
+          td
+            = project.address
+          td
+            = project.area
+          td
+            = project.status
+== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1
