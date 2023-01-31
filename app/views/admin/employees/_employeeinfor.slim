@@ -4,7 +4,8 @@
       .card-body
         .user-avatar-section
           .d-flex.align-items-center.flex-column
-            img.img-fluid.rounded.my-4[src="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo/assets/img/avatars/10.png" height="110" width="110" alt="User avatar"]
+            img.img-fluid
+              = image_pack_tag "10.png"
             .user-info.text-center
               h4.mb-2
                 = user.employee.full_name
@@ -102,4 +103,4 @@
               .fv-plugins-message-container.invalid-feedback
             div
               = f.button :submit, 'Change Password', class: 'btn btn-primary me-2'
-    = render "projects" ,user: @user
+    = render "projects", user: @user

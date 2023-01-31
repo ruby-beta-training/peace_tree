@@ -24,7 +24,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role
 
   has_one :employee
-  has_many :users_projects
+  has_many :users_projects, dependent: :destroy
   has_many :projects, through: :users_projects
   accepts_nested_attributes_for :employee, allow_destroy: true, update_only: true
 

@@ -1,5 +1,6 @@
 class Admin::EmployeesController < Admin::BaseController
   before_action :set_user, only: %i[show reset_password edit update destroy]
+
   def index
     @users = User.employees.includes([employee: :department]).order('created_at DESC')
     @users = @users.employees_department(params[:depart]).employees_email(params[:search])
