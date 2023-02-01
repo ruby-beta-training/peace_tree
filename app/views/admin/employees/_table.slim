@@ -13,7 +13,7 @@
         th
           | Department
         th
-          | Status
+          | Joined
         th
           | Actions
     tbody
@@ -30,12 +30,8 @@
           td
             = user.employee&.department&.name
           td
-            - if user.employee.present?
-              span.badge.bg-label-success
-                | Active
-            - else
-              span.badge.bg-label-warning
-                | NoActive
+            - if user.created_at
+             = distance_of_time_in_words_to_now(user.created_at)
           td
             .d-inline-block.text-nowrap
               button.btn.btn-outline-success
@@ -46,7 +42,6 @@
               button.btn.btn-outline-info
                 = link_to admin_employee_path(user)
                   = image_pack_tag 'show-icon.svg'
-
   == pagy_bootstrap_nav(@pagy) if @pagy.pages > 1
   #exampleModal.modal.fade[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
     .modal-dialog

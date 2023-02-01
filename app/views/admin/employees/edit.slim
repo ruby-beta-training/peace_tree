@@ -1,8 +1,8 @@
 .new_employee
   .d-flex.align-items-center
-    .card.w-75.px.mx-3.my-3.justify-content-between
+    .card.w-100.mx-3.my-3.justify-content-between
       .card-header.justify-content-between.align-items-center
         h1.mb-0
           | Edit Employee
-      .card-body.justify-content-between.align-items-center
+      .card-body.ml-4
         = render  "form", user: @user
