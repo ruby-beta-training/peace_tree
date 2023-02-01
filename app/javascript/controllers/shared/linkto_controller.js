@@ -7,7 +7,10 @@ export default class extends Controller {
     const navigatePath = mainTarget.dataset?.href;
     const stopNavigateTarget = event.target.closest('.stop-navigate');
 
-    if ((!stopNavigateTarget || !mainTarget.contains(stopNavigateTarget)) && navigatePath) {
+    if (
+      (!stopNavigateTarget || !mainTarget.contains(stopNavigateTarget)) &&
+      navigatePath
+    ) {
       Turbolinks.visit(navigatePath);
     }
   }

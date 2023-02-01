@@ -1,0 +1,26 @@
+div[data-controller="filters choices"]
+  .card.mx-3.my-3
+    .card-header.border-bottom.mx-2
+      h5.card-title
+        | Search Filter
+      .d-flex.justify-content-between.align-items-center.row.py-3.gap-3.gap-md-0
+        .col-md-4.user_role
+        select.form-select.text-capitalize.mx-2[data-choices-target="select" data-action="click->choices#searchBySelect" data-url=admin_employees_path]
+          option[value="1"]
+            | 1
+          option[value="2"]
+            | 2
+          option[value="4"]
+            | 4
+          option[value="3"]
+            | Depart3
+    .row.my-2
+      .col-md-11
+        .dt-action-buttons.text-xl-end.text-lg-start.text-md-end.text-start.d-flex.align-items-center.justify-content-end.flex-md-row.flex-column.mb-3.mb-md-0
+          label.mx-2
+            input.form-control[type="search" placeholder="Search.." data-filters-target="input" data-action="input->filters#searchByAttribute" data-url=admin_employees_path]
+          span
+              =link_to "New employee", new_admin_employee_path, class:'btn btn-primary'
+  div[data-filters-target="listData"]
+    div[data-choices-target="listData"]
+        = render  'table', users: @users

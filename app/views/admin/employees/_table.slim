@@ -1,0 +1,58 @@
+.card.mx-3.pb-3
+  table.table.table-hover
+    thead.thead-light
+      tr
+        th
+          | Email
+        th
+          | Full name
+        th
+          | Address
+        th
+          | Phone number
+        th
+          | Status
+        th
+          | Actions
+    tbody
+      - users.each do |user|
+        tr
+          td
+            = user.email
+          td
+            = user.employee&.full_name
+          td
+            = user.employee&.phone_number
+          td
+            = user.employee&.address
+          td
+            - if user.employee.present?
+              span.badge.bg-label-success
+                | Active
+            - else
+              span.badge.bg-label-warning
+                | NoActive
+          td
+            .d-inline-block.text-nowrap
+              button.btn.btn-outline-success
+                = link_to edit_admin_employee_path(user)
+                  = image_pack_tag 'edit-icon.svg'
+              button.btn.btn-outline-danger type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                = image_pack_tag 'delete-icon.svg'
+              #exampleModal.modal.fade[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      h5#exampleModalLabel.modal-title
+                        | Message
+                      button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+                    .modal-body
+                      |  Are you sure?
+                    .modal-footer
+                      button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+                        | Close
+                      button.btn.btn-warning[type="button"]
+                        = link_to admin_employee_path(user), method: :delete
+                          | Delete
+
+  == pagy_bootstrap_nav(@pagy) if @pagy.pages > 1

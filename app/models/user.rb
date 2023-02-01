@@ -20,7 +20,21 @@ class User < ApplicationRecord
   rolify
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  after_initialize :set_default_role
+
+  has_one :employee
+  accepts_nested_attributes_for :employee, allow_destroy: true, update_only: true
+  scope :employees, -> { without_role(:admin) }
+  scope :employees_department, ->(department_id) { joins(:employee).where(employees: { department_id: department_id }) }
+
   def auth_token
     JsonWebToken.encode(user_id: id, user_email: email)
+  end
+
+  private
+
+  def set_default_role
+    self.roles ||= :employee
   end
 end

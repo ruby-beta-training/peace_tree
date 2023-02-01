@@ -1,0 +1,33 @@
+.btn {
+  border-radius: 10px;
+  height: 50px;
+}
+
+.btn-primary {
+  background-color: $primary-purple;
+  border-color: $primary-purple;
+  box-shadow: 0 0.125rem 0.25rem 0 rgb(105 108 255 / 40%);
+  color: $white;
+}
+
+.btn-primary:hover {
+  color: $white;
+  background-color: $primary-purple;
+  border-color: $primary-purple-border;
+  transform: translateY(-1px);
+}
+
+.table {
+  font-size: 17px;
+  align-items: center;
+}
+
+.badge {
+  line-height: 0.75;
+  text-transform: uppercase;
+}
+
+.bg-label-success {
+  background-color: $white !important;
+  color: $success !important;
+}

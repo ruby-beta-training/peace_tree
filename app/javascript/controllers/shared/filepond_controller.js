@@ -21,7 +21,7 @@ FilePond.registerPlugin(
 const baseOptions = {
   storeAsFile: true,
   maxFileSize: '5MB',
-  labelIdle: 'Drag & drop here'
+  labelIdle: 'Drag & drop here',
 };
 const avatarExtraOptions = {
   imagePreviewHeight: 200,
@@ -31,7 +31,7 @@ const avatarExtraOptions = {
   styleLoadIndicatorPosition: 'center bottom',
   styleButtonRemoveItemPosition: 'center bottom',
   stylePanelLayout: 'compact circle',
-}
+};
 
 export default class extends Controller {
   static targets = ['input'];
@@ -42,7 +42,9 @@ export default class extends Controller {
 
   setupFilePond(inputTarget) {
     let options = { ...baseOptions };
-    const { dataset: { styleLayout, files } } = inputTarget;
+    const {
+      dataset: { styleLayout, files },
+    } = inputTarget;
 
     if (styleLayout === 'avatar') {
       options = { ...options, ...avatarExtraOptions };
@@ -56,9 +58,11 @@ export default class extends Controller {
       ...options,
       oninit: () => {
         // prevent submit existing files load from server
-        const inputElement = instance.element.querySelector('.filepond--data input');
+        const inputElement = instance.element.querySelector(
+          '.filepond--data input',
+        );
         inputElement?.remove();
-      }
+      },
     });
   }
 }

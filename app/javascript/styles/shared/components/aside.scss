@@ -5,8 +5,8 @@
     width: 90%;
     margin: auto;
   }
-  .active.iconify {
-    color: $white;
+  .active svg {
+    fill: $white;
   }
 
   .nav-item:not(.active):hover {
