@@ -24,9 +24,16 @@ class User < ApplicationRecord
   after_initialize :set_default_role
 
   has_one :employee
+  has_many :users_projects, dependent: :destroy
+  has_many :projects, through: :users_projects
   accepts_nested_attributes_for :employee, allow_destroy: true, update_only: true
+
   scope :employees, -> { without_role(:admin) }
-  scope :employees_department, ->(department_id) { joins(:employee).where(employees: { department_id: department_id }) }
+
+  scope :employees_email, ->(mail) { where('email ILIKE ?', "%#{mail}%") if mail.present? }
+  scope :employees_department, ->(department_id) {
+    joins(:employee).where(employees: { department_id: department_id }) if department_id.present?
+  }
 
   def auth_token
     JsonWebToken.encode(user_id: id, user_email: email)

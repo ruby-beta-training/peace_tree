@@ -1,0 +1,106 @@
+.row.w-100
+  .col-xl-4.col-lg-5.col-md-5.order-1.order-md-0
+    .card.mb-4
+      .card-body
+        .user-avatar-section
+          .d-flex.align-items-center.flex-column
+            img.img-fluid
+              = image_pack_tag "10.png"
+            .user-info.text-center
+              h4.mb-2
+                = user.employee.full_name
+              span.badge.bg-label-secondary
+                | Employee
+        .d-flex.justify-content-around.flex-wrap.my-4.py-3
+          .d-flex.align-items-start.me-4.mt-3.gap-3
+            span.badge.bg-label-primary.p-2.rounded
+              i.bx.bx-check.bx-sm
+            div
+              h5.mb-0
+                | 1.23k
+              span
+                | Tasks Done
+          .d-flex.align-items-start.mt-3.gap-3
+            span.badge.bg-label-primary.p-2.rounded
+              i.bx.bx-customize.bx-sm
+            div
+              h5.mb-0
+                | 568
+              span
+                | Projects Done
+        h5.pb-2.border-bottom.mb-4
+          | Details
+        .info-container
+          ul.list-unstyled
+            li.mb-3
+              span.fw-bold.me-2
+                | Full name:
+              span
+                = user.employee.full_name
+            li.mb-3
+              span.fw-bold.me-2
+                | Email:
+              span
+                = user.email
+            li.mb-3
+              span.fw-bold.me-2
+                | Status:
+              span.badge.bg-label-success
+                | Active
+            li.mb-3
+              span.fw-bold.me-2
+                | Role:
+              span
+                | Employee
+            li.mb-3
+              span.fw-bold.me-2
+                | Tax id:
+              span
+                | Tax-8965
+            li.mb-3
+              span.fw-bold.me-2
+                | Contact:
+              span
+                = user.employee.phone_number
+            li.mb-3
+              span.fw-bold.me-2
+                | Languages:
+              span
+                | French
+            li.mb-3
+              span.fw-bold.me-2
+                | Country:
+              span
+                | England
+          .d-flex.justify-content-center.pt-3
+            = link_to 'Edit', edit_admin_employee_path(user), class: 'btn btn-primary'
+  .col-xl-8.col-lg-7.col-md-7.order-0.order-md-1
+    .card.mb-4
+      h5.card-header
+        | Change Password
+      .card-body
+        = simple_form_for(user, url: reset_password_admin_employee_path(user), html: { method: :put }) do |f|
+          = f.error_notification
+          .row
+            .mb-3.col-12.col-sm-6.form-password-toggle.fv-plugins-icon-container
+              .input-group.input-group-merge.has-validation
+                = f.input :password,
+                  label: 'Password',
+                  required: true,
+                  autofocus: true,
+                  label_html: { class: 'form-label mb-3' },
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: 'new-password', placeholder: 'New password' },
+                  wrapper_html: { class: 'mb-3' }
+              .fv-plugins-message-container.invalid-feedback
+            .mb-3.col-12.col-sm-6.form-password-toggle.fv-plugins-icon-container
+              .input-group.input-group-merge.has-validation
+                 = f.input :password_confirmation,
+                  required: true,
+                  label_html: { class: 'form-label mb-3' },
+                  input_html: { autocomplete: 'new-password', placeholder: 'Confirm your new password' },
+                  wrapper_html: { class: 'mb-3' }
+              .fv-plugins-message-container.invalid-feedback
+            div
+              = f.button :submit, 'Change Password', class: 'btn btn-primary me-2'
+    = render "projects", user: @user

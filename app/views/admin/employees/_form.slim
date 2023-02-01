@@ -1,46 +1,53 @@
  = simple_form_for user, url: user.id ? admin_employee_path(user) :  admin_employees_path do |f|
   = f.error_notification
   .form-inputs
-    = f.input :email,
-      autofocus: true,
-      required: true,
-      input_html: { autocomplete: 'email' },
-      label_html: { class: 'form-label mb-3' },
-      wrapper_html: { class: 'mb-3' },
-      placeholder: 'user@domain.com'
-    = f.input :password,
-      required: true,
-      input_html: { autocomplete: 'new-password' },
-      label_html: { class: 'form-label mb-3' },
-      wrapper_html: { class: 'mb-3' },
-      placeholder: 'password'
-    = f.simple_fields_for :employee do |ff|
-      = ff.input :full_name,
-        autofocus: true,
-        required: true,
-        input_html: { autocomplete: 'full_name'},
-        label_html: { class: 'form-label mb-3' },
-        wrapper_html: { class: 'mb-3' },
-        placeholder: 'Johny Dang'
-      = ff.input :address,
-        required: true,
-        input_html: { autocomplete: 'address' },
-        label_html: { class: 'form-label mb-3' },
-        wrapper_html: { class: 'mb-3' },
-        placeholder: 'address'
-      = ff.input :phone_number,
-        required: true,
-        input_html: { autocomplete: 'phone number' },
-        label_html: { class: 'form-label mb-3' },
-        wrapper_html: { class: 'mb-3' },
-        placeholder: 'phone number'
-      = ff.input :department_id,
-        as: :select,
-        collection: Department.all,
-        prompt: 'Select department',
-        required: true,
-        label_html: { class: 'form-label mb-3' },
-        wrapper_html: { class: 'mb-3' }
-
-  .form-actions.mb-3
-    = f.button :submit, 'Create', class: 'btn btn-primary'
+    .row
+      .col-md-5.col-12.mb-4.mx-4
+        = f.input :email,
+          autofocus: true,
+          required: true,
+          input_html: { autocomplete: 'email' },
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'user@domain.com'
+        - if user.id.blank?
+          .col-md-5.col-12.mb-4
+            = f.input :password,
+              required: true,
+              input_html: { autocomplete: 'new-password' },
+              label_html: { class: 'form-label mb-3' },
+              wrapper_html: { class: 'mb-3' },
+              placeholder: 'password'
+      = f.simple_fields_for :employee do |ff|
+        .col-md-5.col-12.mb-4.mx-4
+          = ff.input :full_name,
+            autofocus: true,
+            required: true,
+            input_html: { autocomplete: 'full_name'},
+            label_html: { class: 'form-label mb-3' },
+            wrapper_html: { class: 'mb-3' },
+            placeholder: 'Johny Dang'
+        .col-md-5.col-12.mb-4.mx-4
+          = ff.input :address,
+            required: true,
+            input_html: { autocomplete: 'address' },
+            label_html: { class: 'form-label mb-3' },
+            wrapper_html: { class: 'mb-3' },
+            placeholder: 'address'
+        .col-md-5.col-12.mb-4.mx-4
+          = ff.input :phone_number,
+            required: true,
+            input_html: { autocomplete: 'phone number' },
+            label_html: { class: 'form-label mb-3' },
+            wrapper_html: { class: 'mb-3' },
+            placeholder: 'phone number'
+        .col-md-5.col-12.mb-4.mx-4
+          = ff.input :department_id,
+            as: :select,
+            collection: Department.all,
+            prompt: 'Select department',
+            required: true,
+            label_html: { class: 'form-label mb-3' },
+            wrapper_html: { class: 'mb-3' }
+    .form-actions.mb-3
+      = f.button :submit, 'Create', class: 'btn btn-primary'

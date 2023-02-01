@@ -1,0 +1,13 @@
+ul.nav.nav-tabs[role="tablist"]
+  li.nav-item[role="presentation"]
+    button.nav-link.active[name="button" type="submit" data-bs-toggle="tab" data-bs-target="#profile" role="tab"]
+      | Employee information
+  li.nav-item[role="presentation"]
+    button.nav-link.my-custom-class[name="button" type="submit" data-bs-toggle="tab" data-bs-target="#new" role="tab"]
+      | New feature
+.tab-content.my-padding
+  #profile.tab-pane.active.fade.show[role="tabpanel"]
+     = render "employeeinfor", user: @user
+  #new.tab-pane.fade.in[role="tabpanel"]
+    button
+      | Click!

@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :admin do
     root 'dashboard#index'
-    resources :employees
+    resources :employees do
+      member do
+        put 'reset_password'
+      end
+    end
   end
 
   resources :employees
