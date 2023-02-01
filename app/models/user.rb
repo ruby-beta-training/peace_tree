@@ -26,10 +26,7 @@ class User < ApplicationRecord
   has_one :employee
   accepts_nested_attributes_for :employee, allow_destroy: true, update_only: true
   scope :employees, -> { without_role(:admin) }
-  scope :employees_email, ->(mail) { where('email LIKE ?', "%#{mail}%") if mail.present? }
-  scope :employees_department, ->(department_id) {
-    joins(:employee).where(employees: { department_id: department_id }) if department_id.present?
-  }
+  scope :employees_department, ->(department_id) { joins(:employee).where(employees: { department_id: department_id }) }
 
   def auth_token
     JsonWebToken.encode(user_id: id, user_email: email)

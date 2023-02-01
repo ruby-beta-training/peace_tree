@@ -5,7 +5,6 @@ class CreateEmployees < ActiveRecord::Migration[6.1]
       t.string :address
       t.string :phone_number
       t.belongs_to :user
-      t.belongs_to :department
 
       t.timestamps
     end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     root 'dashboard#index'
     resources :employees
   end
+
   resources :employees
 
   root 'pages#home'

@@ -18,21 +18,13 @@
 #
 FactoryBot.define do
   factory :user do
-    sequence(:email) { Faker::Internet.safe_email }
-    password { '123456789' }
+    sequence(:email)    { |n| "user#{n}@gmail.com" }
+    password            { 'password123' }
   end
 
   trait :user do
-    after(:create) { |user| user.add_role(:employee) }
+    after(:create) { |user| user.add_role(:user) }
   end
-
-  # factory :employee do
-  #   full_name { Faker::Name.name }
-  #   address { Faker::Address.full_address }
-  #   phone_number { Faker::PhoneNumber.phone_number }
-  #   user_id { create(:user).id }
-  #   department_id { Random.rand(1..3) }
-  # end
 
   trait :admin do
     after(:create) { |user| user.add_role(:admin) }
