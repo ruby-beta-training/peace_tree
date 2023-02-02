@@ -13,7 +13,7 @@ class Admin::EmployeesController < Admin::BaseController
 
   def show
     @projects = @user.projects
-    @pagy, @projects = pagy(@projects, items: 3)
+    @pagy, @projects = pagy(@projects, items: 4)
   end
 
   def new

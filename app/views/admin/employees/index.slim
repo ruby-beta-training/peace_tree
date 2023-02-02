@@ -21,6 +21,5 @@ div[data-controller="filters choices"]
             input.form-control[type="search" placeholder="Search.." data-filters-target="input" data-action="input->filters#searchByAttribute" data-url=admin_employees_path]
           span
               =link_to "New employee", new_admin_employee_path, class:'btn btn-primary'
-  div[data-filters-target="listData"]
-    div[data-choices-target="listData"]
-        = render  'table', users: @users
+  div[data-choices-target="listData"]
+    = render 'table', users: @users

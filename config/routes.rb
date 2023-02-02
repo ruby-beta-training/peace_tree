@@ -11,6 +11,14 @@ Rails.application.routes.draw do
         put 'reset_password'
       end
     end
+    resources :projects do
+      resources :activities
+      member do
+        get 'delete_employee'
+        get 'show_employees'
+        get 'add_employee'
+      end
+    end
   end
 
   resources :employees
