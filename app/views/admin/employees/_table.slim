@@ -1,44 +1,59 @@
-.card.mx-3.pb-3
-  table.table.table-hover
-    thead-light
-      tr
-        th
-          | Email
-        th
-          | Full name
-        th
-          | Address
-        th
-          | Phone number
-        th
-          | Department
-        th
-          | Joined
-        th
-          | Actions
-    tbody
-      - users.each do |user|
+div[data-controller="employee"]
+  .card.mx-3.pb-3
+    table.table.table-hover
+      thead-light
         tr
-          td
-            = user.email
-          td
-            = user.employee&.full_name
-          td
-            = user.employee&.phone_number
-          td
-            = user.employee&.address
-          td
-            - if user.created_at
-             = distance_of_time_in_words_to_now(user.created_at)
-          td
-            .d-inline-block.text-nowrap
-              button.btn.btn-outline-success
-                = link_to edit_admin_employee_path(user)
-                  = image_pack_tag 'edit-icon.svg'
-              button.btn.btn-outline-danger type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                = image_pack_tag 'delete-icon.svg'
-              button.btn.btn-outline-info
-                = link_to admin_employee_path(user)
-                  = image_pack_tag 'show-icon.svg'
-
-  == pagy_bootstrap_nav(@pagy) if @pagy.pages > 1
+          th
+            | Email
+          th
+            | Full name
+          th
+            | Address
+          th
+            | Phone number
+          th
+            | Department
+          th
+            | Joined
+          th
+            | Actions
+      tbody
+        - users.includes(employee: :department).each do |user|
+          tr
+            td
+              = user.email
+            td
+              = user.employee&.full_name
+            td
+              = user.employee&.address
+            td
+              = user.employee&.phone_number
+            td
+              = user.employee&.department&.name
+            td
+              - if user.created_at
+              = distance_of_time_in_words_to_now(user.created_at)
+            td
+              .d-inline-block.text-nowrap
+                button.btn.btn-outline-success
+                  = link_to edit_admin_employee_path(user)
+                    = image_pack_tag 'edit-icon.svg'
+                button.btn.btn-outline-danger type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-url=admin_employee_path(user) data-action="click->employee#setUrlDelete"
+                  = image_pack_tag 'delete-icon.svg'
+                button.btn.btn-outline-info
+                  = link_to admin_employee_path(user)
+                    = image_pack_tag 'show-icon.svg'
+    == pagy_bootstrap_nav(@pagy) if @pagy.pages > 1
+    #exampleModal.modal.fade[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title
+              | Message
+            button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+          .modal-body
+            |  Are you sure?
+          .modal-footer
+            button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+              | Close
+            = link_to 'Delete', '', method: :delete, class: 'btn btn-warning', id:'buttonDelete'

@@ -2,8 +2,8 @@ class Admin::EmployeesController < Admin::BaseController
   before_action :set_user, only: %i[show reset_password edit update destroy]
 
   def index
-    @users = User.employees.includes([:employee]).order('created_at DESC')
-    @users = @users.where('email LIKE ?', "%#{params[:search]}%") if params[:search].present?
+    @users = User.employees.includes([employee: :department]).order('created_at DESC')
+    @users = @users.employees_department(params[:depart]).employees_email(params[:search])
     @pagy, @users = pagy(@users)
     respond_to do |format|
       format.html
@@ -13,7 +13,7 @@ class Admin::EmployeesController < Admin::BaseController
 
   def show
     @projects = @user.projects
-    @pagy, @projects = pagy(@projects, items: 4)
+    @pagy, @projects = pagy(@projects, items: 3)
   end
 
   def new

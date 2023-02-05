@@ -1,9 +1,13 @@
 class Admin::ProjectsController < Admin::BaseController
-  before_action :set_project, only: %i[show edit delete_employee update destroy]
-
+  before_action :set_project, only: %i[show edit show_employees_of_project delete_employee add_employee show_employees update destroy]
   def index
     @projects = Project.order('created_at DESC')
+    @projects = @projects.projects_name(params[:search])
     @pagy, @projects = pagy(@projects)
+    respond_to do |format|
+      format.html
+      format.json { render json: { html: render_html_employees } }
+    end
   end
 
   def show
@@ -50,17 +54,26 @@ class Admin::ProjectsController < Admin::BaseController
   end
 
   def add_employee
-    byebug
-    # if @project.users<<
+    @user = User.find(params[:user_id]) if params[:user_id].present?
+    @project.users << @user
+    show_employees
   end
 
   def show_employees
+    @us = @project.users
     @users = User.order('created_at DESC')
-    @pagy, @users = pagy(@users, items: 8)
-    respond_to do |format|
-      format.html
-      format.json { render json: { html: render_html_table } }
-    end
+    @users = @users.where.not(id: @us.pluck(:id))
+    @users = @users.employees_email(params[:search])
+    @pagy, @users = pagy(@users, items: 8, link_extra: 'data-remote="true"')
+    render json: {
+      html: render_html_table, pagination: render_pagination_html
+    }
+  end
+
+  def show_employees_of_project
+    render json: {
+      html: render_html_employees_of_project
+    }
   end
 
   private
@@ -74,6 +87,24 @@ class Admin::ProjectsController < Admin::BaseController
   end
 
   def render_html_table
-    render_to_string(partial: 'admin/projects/all_employee', formats: [:html], layout: false, locals: { users: @users })
+    render_to_string(
+      partial: 'admin/projects/employees/table',
+      formats: [:html], layout: false, locals: { users: @users, project: @project }
+    )
+  end
+
+  def render_pagination_html
+    render_to_string(
+      partial: 'admin/projects/employees/pagination',
+      formats: [:html], layout: false, locals: { users: @pagy }
+    )
+  end
+
+  def render_html_employees
+    render_to_string(partial: 'admin/projects/table_projects', formats: [:html], layout: false, locals: { projects: @projects })
+  end
+
+  def render_html_employees_of_project
+    render_to_string(partial: 'admin/projects/employees', formats: [:html], layout: false, locals: { users: @project.users })
   end
 end

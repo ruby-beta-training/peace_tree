@@ -1,0 +1,29 @@
+div[data-controller="project"]
+  table.table.table-hover.table-condensed
+    thead-light
+      tr
+        th
+          | Email
+        th
+          | Full name
+        th
+          | Department
+        th
+          | Joined
+        th
+          | Actions
+    tbody
+      - users.includes(employee: :department).each do |user|
+        tr
+          td
+            = user.email
+          td
+            = user.employee&.full_name
+          td
+            = user.employee&.department&.name
+          td
+            - if user.created_at
+              = distance_of_time_in_words_to_now(user.created_at)
+          td
+            #plus.d-inline-block.text-nowrap[data-project-target="inputUser" data-userid=user.id data-projectid=project.id]
+              = image_pack_tag 'plus-icon.svg', class: 'btn btn-outline-success'
