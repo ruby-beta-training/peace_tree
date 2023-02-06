@@ -1,6 +1,22 @@
 import { Controller } from '@hotwired/stimulus';
 import Rails from '@rails/ujs';
 
+function renderWhenSuccess(res) {
+  const modalListEmployeesEl = document.getElementById('modalListEmployees');
+  const listData = document.getElementById('listData');
+  listData.innerHTML = res.html;
+  const paginationEl = modalListEmployeesEl.querySelector('#pagination');
+  paginationEl.innerHTML = res.pagination;
+  const paginationItems = paginationEl.querySelectorAll(`.page-item`);
+  const k = modalListEmployeesEl.querySelectorAll(`#plus`);
+  k.forEach((item) => {
+    item.setAttribute(`data-action`, `click->project#rerenderTableEmployee`);
+  });
+  paginationItems.forEach((item) => {
+    item.setAttribute(`data-action`, `click->project#getEmployeeTableWithPage`);
+    item.setAttribute(`data-url`, item.querySelector(`a`).getAttribute(`href`));
+  });
+}
 export default class extends Controller {
   static targets = [
     'select',
@@ -9,7 +25,6 @@ export default class extends Controller {
     'listProject',
     'search',
     'inputUser',
-    'input1',
   ];
 
   setUrlDelete(event) {
@@ -20,7 +35,6 @@ export default class extends Controller {
   }
 
   showEmployee() {
-    debugger;
     const project_id = this.input1Target.dataset.id;
     const employees = document.getElementById('employees');
     const baseUrl = '/admin/projects/';
@@ -45,58 +59,20 @@ export default class extends Controller {
       type: 'get',
       dataType: 'json',
       success: (res) => {
-        listData.innerHTML = res.html;
-        paginationEl.innerHTML = res.pagination;
-        const paginationItems = paginationEl.querySelectorAll(`.page-item`);
-        const k = document.querySelectorAll(`#plus`);
-        k.forEach((item) => {
-          item.setAttribute(`data-action`, `click->project#hello`);
-          item.setAttribute(`data-url`, '/admin/projects/510/add_employee');
-        });
-        paginationItems.forEach((item) => {
-          item.setAttribute(
-            `data-action`,
-            `click->project#getEmployeeTableWithPage`,
-          );
-          item.setAttribute(
-            `data-url`,
-            item.querySelector(`a`).getAttribute(`href`),
-          );
-        });
+        renderWhenSuccess(res);
       },
     });
   }
 
-  hello(event) {
+  rerenderTableEmployee(event) {
     const userId = this.inputUserTarget.dataset.userid;
     const project_id = this.inputUserTarget.dataset.projectid;
-    debugger;
     Rails.ajax({
       url: `/admin/projects/${project_id}/add_employee?user_id=${userId}`,
       type: 'get',
       dataType: 'json',
       success: (res) => {
-        const modalListEmployeesEl =
-          document.getElementById('modalListEmployees');
-        const listData = document.getElementById('listData');
-        listData.innerHTML = res.html;
-        const paginationEl = modalListEmployeesEl.querySelector('#pagination');
-        paginationEl.innerHTML = res.pagination;
-        const paginationItems = paginationEl.querySelectorAll(`.page-item`);
-        const k = modalListEmployeesEl.querySelectorAll(`#plus`);
-        k.forEach((item) => {
-          item.setAttribute(`data-action`, `click->project#hello`);
-        });
-        paginationItems.forEach((item) => {
-          item.setAttribute(
-            `data-action`,
-            `click->project#getEmployeeTableWithPage`,
-          );
-          item.setAttribute(
-            `data-url`,
-            item.querySelector(`a`).getAttribute(`href`),
-          );
-        });
+        renderWhenSuccess(res);
       },
     });
   }
@@ -110,31 +86,13 @@ export default class extends Controller {
       type: 'get',
       dataType: 'json',
       success: (res) => {
-        listData.innerHTML = res.html;
-        const modalListEmployeesEl =
-          document.getElementById('modalListEmployees');
-        const paginationEl = modalListEmployeesEl.querySelector('#pagination');
-        paginationEl.innerHTML = res.pagination;
-        const paginationItems = paginationEl.querySelectorAll(`.page-item`);
-        debugger;
-
-        paginationItems.forEach((item) => {
-          item.setAttribute(
-            `data-action`,
-            `click->project#getEmployeeTableWithPage`,
-          );
-          item.setAttribute(
-            `data-url`,
-            item.querySelector(`a`).getAttribute(`href`),
-          );
-        });
+        renderWhenSuccess(res);
       },
     });
   }
 
   searchByAttribute() {
     const baseUrl = this.inputTarget.dataset.url;
-    debugger;
     Rails.ajax({
       url: `${baseUrl}?search=${this.inputTarget.value}`,
       type: 'get',

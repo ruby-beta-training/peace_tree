@@ -22,4 +22,11 @@ class ApplicationController < ActionController::Base
   def redirect_to_employee
     redirect_to new_employee_path, notice: 'You must input infor' if employee?(current_user)
   end
+
+  def render_table(path, local)
+    render_to_string(
+      partial: path,
+      formats: [:html], layout: false, locals: local
+    )
+  end
 end

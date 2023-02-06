@@ -6,7 +6,7 @@ class Admin::ProjectsController < Admin::BaseController
     @pagy, @projects = pagy(@projects)
     respond_to do |format|
       format.html
-      format.json { render json: { html: render_html_employees } }
+      format.json { render json: { html: render_table('admin/projects/employees', { users: @project.users }) } }
     end
   end
 
@@ -48,31 +48,36 @@ class Admin::ProjectsController < Admin::BaseController
 
   def delete_employee
     if @project.users.delete(params[:user_id])
-      flash[:notice] = 'remove employee successfully'
+      flash[:notice] = t('common.destroy.success', model: @project.project_name)
+    else
+      flash[:alert] = @user.errors.full_messages.to_sentence
     end
     redirect_to admin_project_path
   end
 
   def add_employee
     @user = User.find(params[:user_id]) if params[:user_id].present?
-    @project.users << @user
-    show_employees
+    if @project.users << @user
+      show_employees
+      flash[:notice] = 'add employee successfully'
+    else
+      flash[:alert] = 'add employee failed'
+    end
   end
 
   def show_employees
     @us = @project.users
-    @users = User.order('created_at DESC')
-    @users = @users.where.not(id: @us.pluck(:id))
-    @users = @users.employees_email(params[:search])
+    @users = User.order('created_at DESC').where.not(id: @us.pluck(:id)).employees_email(params[:search])
     @pagy, @users = pagy(@users, items: 8, link_extra: 'data-remote="true"')
     render json: {
-      html: render_html_table, pagination: render_pagination_html
+      html: render_table('admin/projects/employees/table', { users: @users, project: @project }),
+      pagination: render_table('admin/projects/employees/pagination', { users: @pagy })
     }
   end
 
   def show_employees_of_project
     render json: {
-      html: render_html_employees_of_project
+      html: render_table('admin/projects/employees', { users: @project.users })
     }
   end
 
@@ -84,27 +89,5 @@ class Admin::ProjectsController < Admin::BaseController
 
   def project_params
     params.require(:project).permit(:project_name, :project_type, :description, :address, :area, :status)
-  end
-
-  def render_html_table
-    render_to_string(
-      partial: 'admin/projects/employees/table',
-      formats: [:html], layout: false, locals: { users: @users, project: @project }
-    )
-  end
-
-  def render_pagination_html
-    render_to_string(
-      partial: 'admin/projects/employees/pagination',
-      formats: [:html], layout: false, locals: { users: @pagy }
-    )
-  end
-
-  def render_html_employees
-    render_to_string(partial: 'admin/projects/table_projects', formats: [:html], layout: false, locals: { projects: @projects })
-  end
-
-  def render_html_employees_of_project
-    render_to_string(partial: 'admin/projects/employees', formats: [:html], layout: false, locals: { users: @project.users })
   end
 end

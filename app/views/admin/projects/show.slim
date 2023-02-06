@@ -54,8 +54,7 @@ div[data-controller="project"]
               dt-action-buttons.text-xl-end.text-lg-start.text-md-end.text-start.d-flex.align-items-center.justify-content-end.flex-md-row.flex-column.mb-3
                 button.btn.btn-primary type="button" data-bs-toggle="modal" data-bs-target="#modalListEmployees" data-project-target="input" data-action="click->project#showTableInPopUp" data-id=@project.id
                   | Add employee
-              div[data-project-target="input1" data-id=@project.id data-action="project#showEmployee"]
-                #employees
+              = render  "employees", users: @project.users
             #new.tab-pane.fade.in[role="tabpanel"]
               button
                 | Click!
