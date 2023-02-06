@@ -1,0 +1,47 @@
+ = simple_form_for project, url: project.id ? admin_project_path(project) : admin_projects_path do |f|
+  = f.error_notification
+  .form-inputs
+    .row
+      .col-md-5.col-12.mb-4.mx-4
+        = f.input :project_name,
+          autofocus: true,
+          required: true,
+          input_html: { autocomplete: 'project name' },
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'Project A'
+        = f.input :project_type,
+          autofocus: true,
+          required: true,
+          input_html: { autocomplete: 'project type' },
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'Project type A'
+        = f.input :description,
+          autofocus: true,
+          required: true,
+          input_html: { :cols => 5, :rows => 6 },
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'This project A'
+        = f.input :address,
+          autofocus: true,
+          input_html: { autocomplete: 'project name' },
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'Address'
+        = f.input :area,
+          autofocus: true,
+          input_html: { autocomplete: 'project name' },
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'Area'
+        = f.input :status,
+          autofocus: true,
+          input_html: { autocomplete: 'project name' },
+          label_html: { class: 'form-label mb-3' },
+          wrapper_html: { class: 'mb-3' },
+          placeholder: 'Project A'
+
+    .form-actions.mb-3.mx-4
+      = f.button :submit, 'Create', class: 'btn btn-primary'

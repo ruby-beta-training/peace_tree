@@ -12,22 +12,30 @@
 
 .btn-primary:hover {
   color: $white;
-  background-color: $primary-purple;
-  border-color: $primary-purple-border;
   transform: translateY(-1px);
 }
-
+.btn-warning:hover {
+  transform: translateY(-1px);
+}
 .table {
   font-size: 17px;
   align-items: center;
 }
 
 .badge {
-  line-height: 0.75;
+  line-height: 2;
   text-transform: uppercase;
 }
 
 .bg-label-success {
-  background-color: $white !important;
-  color: $success !important;
+  background-color: #e8fadf !important;
+  color: #71dd37 !important;
+}
+
+.table-condensed {
+  font-size: 15px;
+}
+
+.table-responsive {
+  max-height: 800px;
 }

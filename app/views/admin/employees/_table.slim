@@ -1,6 +1,6 @@
 .card.mx-3.pb-3
   table.table.table-hover
-    thead.thead-light
+    thead-light
       tr
         th
           | Email
@@ -40,4 +40,5 @@
               button.btn.btn-outline-info
                 = link_to admin_employee_path(user)
                   = image_pack_tag 'show-icon.svg'
+
   == pagy_bootstrap_nav(@pagy) if @pagy.pages > 1

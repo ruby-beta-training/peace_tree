@@ -1,0 +1,95 @@
+div[data-controller="project"]
+  .card.mb-4.mx-3.my-3
+    h1.card-header
+      | Project details
+    .card-body
+      .row
+        .col-xl-5.order-1.order-xl-0
+          .mb-4
+            h2.mb-1
+              | Project name
+            p
+              = @project.project_name
+          .mb-4
+            h2.mb-1
+              | Project type
+            p
+              = @project.project_type
+          .mb-4
+            h2.mb-1
+              | Description
+            p
+              = @project.description
+          .mb-4
+            h2.mb-1
+              | Address
+            p
+              = @project.address
+          .mb-4
+            h2.mb-1
+              | Area
+            p
+              = @project.project_type
+          .mb-4
+            h2.mb-1
+              | Status
+            p
+              = @project.status
+          .mb-4
+            h6.mb-1
+              span.me-2
+                | $199 Per Month
+              span.badge.bg-label-primary
+                | Popular
+            p
+              | Standard plan for small to medium businesses
+        .col-xl-6.order-0.order-xl-0
+          ul.nav.nav-tabs.mb-3[role="tablist"]
+            li.nav-item[role="presentation"]
+              button.nav-link.active[name="button" type="submit" data-bs-toggle="tab" data-bs-target="#profile" role="tab"]
+                | Employees
+            li.nav-item[role="presentation"]
+              button.nav-link.my-custom-class[name="button" type="submit" data-bs-toggle="tab" data-bs-target="#new" role="tab"]
+                | New feature
+          .tab-content.my-padding
+            #profile.tab-pane.active.fade.show[role="tabpanel"]
+              dt-action-buttons.text-xl-end.text-lg-start.text-md-end.text-start.d-flex.align-items-center.justify-content-end.flex-md-row.flex-column.mb-3
+                button.btn.btn-primary type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-project-target="input" data-action="click->project#showTableInPopUp" data-id=@project.id
+                  | Add employee
+              = render "employees", users: @project.users
+            #new.tab-pane.fade.in[role="tabpanel"]
+              button
+                | Click!
+
+      .col-12.order-2.order-xl-0
+          =link_to "Update Project", edit_admin_project_path(@project), class:'btn btn-primary me-2 my-2'
+          button.btn.btn-warning.me-2.my-2[data-bs-toggle="modal" data-bs-target="#exampleModal"]
+            | Delete Project
+  #exampleModal.modal.fade[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title
+              | Message
+            button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+          .modal-body
+            |  Are you sure?
+          .modal-footer
+            button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+              | Close
+            = link_to 'Delete', admin_project_path, method: :delete, class: 'btn btn-warning', id:'buttonDelete'
+
+  #staticBackdrop.modal.modal-lg.fade[data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"]
+    .modal-dialog.modal-dialog-centered
+      .modal-content
+        .modal-header
+          h5#staticBackdropLabel.modal-title
+            | Employees
+          button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+        .modal-body
+          div[data-project-target="listData"]
+        .modal-footer
+          button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+            | Close
+          button.btn.btn-primary[type="button"]
+            | Understood

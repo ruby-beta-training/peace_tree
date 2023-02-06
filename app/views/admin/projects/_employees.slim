@@ -1,0 +1,45 @@
+.card.mx-3.pb-3
+  table.table.table-hover
+    thead-light
+      tr
+        th
+          | Email
+        th
+          | Full name
+        th
+          | Department
+        th
+          | Joined
+        th
+          | Actions
+    tbody
+      - users.includes([employee: :department]).each do |user|
+        tr
+          td
+            = user.email
+          td
+            = user.employee&.full_name
+          td
+            = user.employee&.department&.name
+          td
+            - if user.created_at
+             = distance_of_time_in_words_to_now(user.created_at)
+          td
+            .d-inline-block.text-nowrap
+              = link_to delete_employee_admin_project_path(user_id: user.id), class: 'btn btn-outline-warning'
+                = image_pack_tag 'minus.svg'
+
+
+  #exampleModal.modal.fade[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+    .modal-dialog
+      .modal-content
+        .modal-header
+          h5#exampleModalLabel.modal-title
+            | Message
+          button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+        .modal-body
+          |  Are you sure?
+        .modal-footer
+          button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+            | Close
+          = link_to 'Delete', '', method: :delete, class: 'btn btn-warning', id:'buttonDelete'

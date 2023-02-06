@@ -11,7 +11,7 @@ gem 'webpacker', '~> 5.4'
 gem 'turbolinks', '~> 5.2'
 gem 'jbuilder', '~> 2.11'
 gem 'turbo-rails', '~> 1.1', '>= 1.1.1'
-
+gem 'rails-bootstrap-tabs', '~> 0.3.2'
 
 gem 'jwt'
 gem 'devise'
