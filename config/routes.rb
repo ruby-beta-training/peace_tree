@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         get 'delete_employee'
         get 'show_employees'
         get 'add_employee'
+        get 'show_employees_of_project'
       end
     end
   end

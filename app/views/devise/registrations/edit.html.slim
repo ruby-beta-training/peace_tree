@@ -1,8 +1,8 @@
-#devise-registrations-edit-container.devise-form-container.d-flex.align-items-center.justify-content-center.flex-column
-  = link_to root_path, class: 'mx-auto mb-4'
-    = image_pack_tag 'tabler-dark.svg', class: 'logo'
+#devise-registrations-edit-container.devise-form-container.d-flex.align-items-center.justify-content-center.flex-column.format-form
   .card.mx-auto
     .card-body
+      .d-flex.justify-content-center
+        = image_pack_tag 'logopeacetree.png', class: 'logo'
       h1.text-center.my-4
         | Update Account
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
